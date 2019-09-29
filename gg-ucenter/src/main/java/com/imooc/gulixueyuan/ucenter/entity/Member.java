@@ -1,10 +1,10 @@
 package com.imooc.gulixueyuan.ucenter.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -23,7 +23,7 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("ucenter_member")
-@ApiModel(value="Member对象", description="学员表")
+@ApiModel(value = "Member对象", description = "学员表")
 public class Member implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -32,15 +32,15 @@ public class Member implements Serializable {
     @TableId("MEMBER_ID")
     private Long memberId;
 
-    @ApiModelProperty(value = "手机号")
+    @ApiModelProperty(value = "手机号",required = true)
     @TableField("MOBILE")
     private String mobile;
 
-    @ApiModelProperty(value = "邮箱号")
+    @ApiModelProperty(value = "邮箱号",required = true)
     @TableField("EMAIL")
     private String email;
 
-    @ApiModelProperty(value = "密码")
+    @ApiModelProperty(value = "密码",required = true)
     @TableField("PASSWORD")
     private String password;
 
@@ -80,20 +80,23 @@ public class Member implements Serializable {
     @TableField("SYS_MSG_NUM")
     private Integer sysMsgNum;
 
-    @ApiModelProperty(value = "上传统计系统消息时间")
+    @ApiModelProperty(value = "上传统计系统消息时间",example = "2019-09-26 14:37")
     @TableField("LAST_SYSTEM_TIME")
     private Date lastSystemTime;
 
-    @ApiModelProperty(value = "更新时间")
-    @TableField("UPDATE_TIME")
-    private Date updateTime;
 
-    @ApiModelProperty(value = "注册时间")
-    @TableField("CREATE_TIME")
+    @ApiModelProperty(value = "创建时间，系统自动生成，无需传入")
+    @TableField(fill = FieldFill.INSERT)
     private Date createTime;
 
-    @ApiModelProperty(value = "逻辑删除 1已删除 0未删除")
-    @TableField("DELETED")
+
+    @ApiModelProperty(value = "更新时间，系统自动生成，无需传入")
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private Date updateTime;
+
+    @ApiModelProperty(value = "逻辑删除，系统自动生成，无需传入",hidden = true)
+    @TableLogic
+    @TableField(fill = FieldFill.INSERT)
     private Boolean deleted;
 
 

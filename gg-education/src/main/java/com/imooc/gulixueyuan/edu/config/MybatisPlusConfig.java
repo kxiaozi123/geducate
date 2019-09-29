@@ -1,8 +1,7 @@
-package com.imooc.gulixueyuan.ucenter.config;
+package com.imooc.gulixueyuan.edu.config;
 
 import com.baomidou.mybatisplus.core.injector.ISqlInjector;
 import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
-import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
@@ -17,16 +16,16 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @EnableTransactionManagement
 @Configuration
-@MapperScan("com.imooc.gulixueyuan.ucenter.mapper")
+@MapperScan("com.imooc.gulixueyuan.edu.mapper")
 public class MybatisPlusConfig {
 
     /**
      * 乐观锁插件
      */
-    @Bean
-    public OptimisticLockerInterceptor optimisticLockerInterceptor() {
-        return new OptimisticLockerInterceptor();
-    }
+//    @Bean
+//    public OptimisticLockerInterceptor optimisticLockerInterceptor() {
+//        return new OptimisticLockerInterceptor();
+//    }
 
     /**
      * 分页插件
@@ -53,7 +52,6 @@ public class MybatisPlusConfig {
     public PerformanceInterceptor performanceInterceptor() {
         PerformanceInterceptor performanceInterceptor = new PerformanceInterceptor();
         performanceInterceptor.setFormat(true);
-        performanceInterceptor.setMaxTime(100);
         return performanceInterceptor;
     }
 
